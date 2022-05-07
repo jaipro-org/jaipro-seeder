@@ -1,7 +1,12 @@
-package com.bindord.eureka.seeder.domain;
+package com.bindord.eureka.seeder.domain.specialist;
 
+import com.bindord.eureka.seeder.domain.jsonb.Rating;
 import com.bindord.eureka.seeder.validation.ExtendedEmailValidator;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +15,14 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Data
+@TypeDefs({
+    @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+})
 public class Specialist {
 
     @Id
@@ -21,13 +30,13 @@ public class Specialist {
     private UUID id;
 
     @NotBlank
-    @Size(min = 2, max = 80)
-    @Column(nullable = false, length = 80)
+    @Size(min = 2, max = 36)
+    @Column(nullable = false, length = 36)
     private String name;
 
     @NotBlank
-    @Size(min = 2, max = 80)
-    @Column(nullable = false, length = 80)
+    @Size(min = 2, max = 36)
+    @Column(nullable = false, length = 36)
     private String lastName;
 
     @Min(value = 0)
@@ -50,7 +59,7 @@ public class Specialist {
     private String country;
 
     @NotBlank
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = Byte.MAX_VALUE)
     @Column(nullable = false, length = Byte.MAX_VALUE)
     private String address;
 
@@ -77,4 +86,9 @@ public class Specialist {
 
     @Column(nullable = false)
     private boolean verified;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb", nullable = false)
+    private List<Rating> ratings;
+
 }
