@@ -1,5 +1,7 @@
 package com.bindord.eureka.seeder.domain.country;
 
+import com.bindord.eureka.seeder.domain.specialist.WorkLocation;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -10,10 +12,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -42,6 +46,10 @@ public class District {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CountryId")
     private Country country;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "district")
+    private List<WorkLocation> workLocations;
 
     public District() {
     }

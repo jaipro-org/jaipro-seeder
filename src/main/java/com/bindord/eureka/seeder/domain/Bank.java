@@ -1,6 +1,7 @@
 package com.bindord.eureka.seeder.domain;
 
 import com.bindord.eureka.seeder.domain.base.AuditingEntity;
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Bank extends AuditingEntity {
+public class Bank extends BaseDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +25,7 @@ public class Bank extends AuditingEntity {
     private String name;
 
     @Column(nullable = false)
-    private String abbrv;
-
-    @Column
-    private String countryCode;
+    private String shortName;
 
     @Column
     private boolean enabled;
@@ -35,10 +33,9 @@ public class Bank extends AuditingEntity {
     public Bank() {
     }
 
-    public Bank(String name, String abbrv, String countryCode, boolean enabled) {
+    public Bank(String name, String shortName, boolean enabled) {
         this.name = name;
-        this.abbrv = abbrv;
-        this.countryCode = countryCode;
+        this.shortName = shortName;
         this.enabled = enabled;
     }
 

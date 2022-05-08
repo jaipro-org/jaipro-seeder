@@ -1,5 +1,6 @@
 package com.bindord.eureka.seeder.domain.country;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
-public class Country {
+public class Country extends BaseDomain {
 
     @Id
     @Size(min = 3, max = 3)

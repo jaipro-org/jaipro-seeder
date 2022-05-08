@@ -1,7 +1,11 @@
 package com.bindord.eureka.seeder.domain.specialist;
 
+import com.bindord.eureka.seeder.domain.json.Photo;
+import com.bindord.eureka.seeder.domain.specialist.json.Experience;
+import com.bindord.eureka.seeder.domain.specialist.json.SocialNetwork;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -16,6 +20,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -35,27 +40,19 @@ public class SpecialistCv {
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = true)
-    private String country;
+    private List<SocialNetwork> socialNetworks;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = true)
-    private String workLocations;
+    private List<Photo> gallery;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = true)
-    private String socialNetworks;
+    private Photo profilePhoto;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = true)
-    private String gallery;
-
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb", nullable = true)
-    private String profileImage;
-
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb", nullable = true)
-    private String experienceTimes;
+    private List<Experience> experienceTimes;
 
     @JsonManagedReference
     @OneToOne(fetch = FetchType.LAZY)

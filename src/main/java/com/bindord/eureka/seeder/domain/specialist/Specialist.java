@@ -1,7 +1,10 @@
 package com.bindord.eureka.seeder.domain.specialist;
 
-import com.bindord.eureka.seeder.domain.jsonb.Rating;
+import com.bindord.eureka.seeder.domain.country.District;
+import com.bindord.eureka.seeder.domain.json.Rating;
 import com.bindord.eureka.seeder.validation.ExtendedEmailValidator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -10,7 +13,11 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -49,16 +56,6 @@ public class Specialist {
     private Integer gender;
 
     @NotBlank
-    @Size(min = 2, max = 50)
-    @Column(nullable = false, length = 50)
-    private String district;
-
-    @NotBlank
-    @Size(min = 2, max = 50)
-    @Column(nullable = false, length = 50)
-    private String country;
-
-    @NotBlank
     @Size(min = 2, max = Byte.MAX_VALUE)
     @Column(nullable = false, length = Byte.MAX_VALUE)
     private String address;
@@ -90,5 +87,18 @@ public class Specialist {
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = false)
     private List<Rating> ratings;
+
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DistrictId", nullable = true)
+    private District district;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "specialist")
+    private List<WorkLocation> workLocations;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "specialist")
+    private List<SpecialistSpecialization> specialistSpecializations;
 
 }

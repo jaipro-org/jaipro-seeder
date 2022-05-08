@@ -1,6 +1,7 @@
-package com.bindord.eureka.seeder.domain.jsonb;
+package com.bindord.eureka.seeder.domain.specialist.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -13,28 +14,21 @@ import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Rating implements Serializable {
+public class Experience implements Serializable {
 
     @NotNull
-    @Min(1)
-    @Digits(integer = 1, fraction = 1)
-    @Column(precision = 1, scale = 1, nullable = false)
-    private Float calification;
-
-    @Null
-    @Size(min = 9, max = 250)
-    private String comment;
+    private UUID professionId;
 
     @NotBlank
-    @Size(min = 72)
-    private String clientName;
+    @Size(min = 3, max = 50)
+    private String professionName;
 
-    @NotNull
-    @Size(min = 36)
-    private String serviceId;
+    @Schema(description = "Experience time in a profession expressed in months")
+    private Integer time;
 
     @FutureOrPresent
     private LocalDateTime date;

@@ -1,4 +1,4 @@
-package com.bindord.eureka.seeder.domain.jsonb;
+package com.bindord.eureka.seeder.domain.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

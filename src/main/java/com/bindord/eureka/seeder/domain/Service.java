@@ -1,7 +1,7 @@
 package com.bindord.eureka.seeder.domain;
 
 import com.bindord.eureka.seeder.domain.base.AuditingEntity;
-import com.bindord.eureka.seeder.domain.jsonb.SvcVal;
+import com.bindord.eureka.seeder.domain.json.SvcVal;
 import com.bindord.eureka.seeder.json.JsonMoneyDoubleSimpleSerializer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
