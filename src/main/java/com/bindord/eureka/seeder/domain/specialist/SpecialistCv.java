@@ -35,7 +35,7 @@ public class SpecialistCv {
 
     @Null
     @Size(min = 30, max = 1300)
-    @Column(nullable = true, length = 1200)
+    @Column(nullable = true, length = 1300)
     private String about;
 
     @Type(type = "jsonb")
