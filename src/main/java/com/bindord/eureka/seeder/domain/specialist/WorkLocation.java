@@ -19,7 +19,7 @@ public class WorkLocation {
     private WorkLocationId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false)
+    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false)
     private Specialist specialist;
 
     @ManyToOne(fetch = FetchType.LAZY)

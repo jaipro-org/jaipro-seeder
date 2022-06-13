@@ -6,6 +6,8 @@ import com.bindord.eureka.seeder.domain.country.District;
 import com.bindord.eureka.seeder.domain.customer.Customer;
 import com.bindord.eureka.seeder.domain.json.Photo;
 import com.bindord.eureka.seeder.domain.profession.Profession;
+import com.bindord.eureka.seeder.domain.service.ids.ServiceRequestId;
+import com.bindord.eureka.seeder.domain.service.json.Milestone;
 import com.bindord.eureka.seeder.domain.specialist.Specialist;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
@@ -17,9 +19,9 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
@@ -28,7 +30,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -38,9 +39,8 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = false)
 public class ServiceRequest extends BaseDomain {
 
-    @Id
-    @Column(name = "ServiceRequestId")
-    private UUID id;
+    @EmbeddedId
+    private ServiceRequestId id;
 
     @Schema(description = "Via where come from the request. 1: particular, 2: public")
     @NotNull
@@ -57,8 +57,8 @@ public class ServiceRequest extends BaseDomain {
     private Integer status;
 
     @NotBlank
-    @Column(nullable = true)
     @Size(min = 60, max = 400)
+    @Column(nullable = true, length = 400)
     private String detail;
 
     @Schema(description = "Counter that saves the total of proposals received in the request")
@@ -93,12 +93,12 @@ public class ServiceRequest extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId", nullable = false)
+    @JoinColumn(name = "CustomerId", nullable = false, insertable = false, updatable = false)
     private Customer customer;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProfessionId", nullable = false)
+    @JoinColumn(name = "ProfessionId", nullable = false, insertable = false, updatable = false)
     private Profession profession;
 
     @JsonManagedReference
@@ -120,7 +120,7 @@ public class ServiceRequest extends BaseDomain {
 
     }
 
-    public ServiceRequest(UUID id) {
+    public ServiceRequest(ServiceRequestId id) {
         this.id = id;
     }
 }

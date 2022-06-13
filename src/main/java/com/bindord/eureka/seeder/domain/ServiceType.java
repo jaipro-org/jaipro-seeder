@@ -21,7 +21,7 @@ public class ServiceType {
 
     @NotBlank
     @Size(max = 60)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 60)
     private String name;
 
     @Size(max = 60)
