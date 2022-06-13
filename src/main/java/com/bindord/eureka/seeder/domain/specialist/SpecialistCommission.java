@@ -33,10 +33,10 @@ public class SpecialistCommission {
 
     @Schema(description = "The fee that has to pay the specialist to the platform for each service he gives")
     @NotNull
-    @Min(1)
+    @Min(0)
     @Max(21)
-    @Digits(integer = 2, fraction = 1)
-    @Column(precision = 2, scale = 1, nullable = false)
+    @Digits(integer = 2, fraction = 2)
+    @Column(precision = 2, scale = 2, nullable = false)
     private Double comission;
 
     @CreatedDate

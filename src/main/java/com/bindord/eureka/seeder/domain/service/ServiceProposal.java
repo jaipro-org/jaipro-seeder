@@ -72,13 +72,13 @@ public class ServiceProposal extends BaseDomain {
     private String profPublicUrl;
 
     @NotNull
-    @Min(20)
+    @Min(1)
     @Max(9999)
     @Column(nullable = false)
     private Integer minCost;
 
     @NotNull
-    @Min(20)
+    @Min(1)
     @Max(9999)
     @Column(nullable = false)
     private Integer maxCost;
