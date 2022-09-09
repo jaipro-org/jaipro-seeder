@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -64,7 +63,6 @@ public class Customer {
     @Column(nullable = false, length = 60)
     private String email;
 
-    @Null
     @Size(min = 8, max = 12)
     @Column(nullable = true, length = 12, unique = true)
     private String document;

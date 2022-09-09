@@ -1,7 +1,6 @@
 package com.bindord.eureka.seeder.domain.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,6 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -27,7 +25,6 @@ public class Rating implements Serializable {
     @Column(precision = 1, scale = 1, nullable = false)
     private Float calification;
 
-    @Null
     @Size(min = 9, max = 250)
     private String comment;
 

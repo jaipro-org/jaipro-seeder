@@ -5,7 +5,6 @@ import com.bindord.eureka.seeder.domain.specialist.json.Experience;
 import com.bindord.eureka.seeder.domain.specialist.json.SocialNetwork;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -18,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +31,6 @@ public class SpecialistCv {
     @Id
     private UUID id;
 
-    @Null
     @Size(min = 30, max = 1300)
     @Column(nullable = true, length = 1300)
     private String about;
