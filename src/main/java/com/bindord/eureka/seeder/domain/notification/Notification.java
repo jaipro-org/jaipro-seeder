@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Notification {
 
     @Id
-    @Column(name = "NotificationId")
+    @Column(name = "NotificationId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
 
     @JsonManagedReference

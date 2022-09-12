@@ -24,7 +24,7 @@ import java.util.UUID;
 public class SpecialistBankAccount extends BaseDomain {
 
     @Id
-    @Column(name = "SpecialistBankAccountId")
+    @Column(name = "SpecialistBankAccountId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
 
     @NotBlank

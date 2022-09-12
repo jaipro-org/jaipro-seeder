@@ -39,7 +39,7 @@ public class GeneralUser implements Serializable {
                     value = "com.bindord.eureka.seeder.component.PostgreSQLUUIDGenerationStrategy"
             )
     )
-    @Column(name = "GeneralUserId")
+    @Column(name = "GeneralUserId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
 
     @NotBlank

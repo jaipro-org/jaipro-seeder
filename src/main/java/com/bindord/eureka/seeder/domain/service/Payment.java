@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -94,8 +93,7 @@ public class Payment extends BaseDomain {
     private boolean verified;
 
     @Schema(description = "Limit time to make effective the pay of the platform's fee, this field is generated when the status pass to created status")
-    @LastModifiedDate
-    @Column(name = "modifiedDate")
+    @Column(name = "expirationDate")
     private LocalDateTime expirationDate;
 
     public Payment() {

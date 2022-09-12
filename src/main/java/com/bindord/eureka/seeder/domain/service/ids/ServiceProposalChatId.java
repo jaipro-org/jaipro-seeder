@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 public class ServiceProposalChatId implements Serializable {
 
-    @Column(name = "ServiceProposalChatId")
+    @Column(name = "ServiceProposalChatId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID serviceProposalChatId;
 
     @Column(name = "ServiceProposalId")

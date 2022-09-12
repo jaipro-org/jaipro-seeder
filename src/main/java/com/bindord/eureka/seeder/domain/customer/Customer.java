@@ -30,7 +30,7 @@ import java.util.UUID;
 public class Customer {
 
     @Id
-    @Column(name = "CustomerId")
+    @Column(name = "CustomerId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
 
     @NotBlank

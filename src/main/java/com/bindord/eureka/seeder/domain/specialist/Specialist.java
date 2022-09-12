@@ -33,7 +33,7 @@ import java.util.UUID;
 public class Specialist {
 
     @Id
-    @Column(name = "SpecialistId")
+    @Column(name = "SpecialistId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID id;
 
     @NotBlank
