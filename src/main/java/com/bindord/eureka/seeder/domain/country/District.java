@@ -1,5 +1,6 @@
 package com.bindord.eureka.seeder.domain.country;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.specialist.WorkLocation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -9,6 +10,8 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,10 +24,10 @@ import java.util.List;
 
 @Entity
 @Data
-public class District {
+public class District extends BaseDomain {
 
     @Id
-    @Column(name = "DistrictId")
+    @Column(name = "DistrictId", columnDefinition = "serial")
     private Integer id;
 
     @Size(min = 2, max = 50)
