@@ -21,7 +21,7 @@ public class Country extends BaseDomain {
     private String id;
 
     @Size(min = 2, max = 50)
-    @Column(nullable = false, updatable = false, length = 50)
+    @Column(nullable = false, updatable = false, length = 60)
     private String name;
 
     @Schema(description = "Numeric code from ISO 3166-1")
