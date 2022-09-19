@@ -1,5 +1,6 @@
 package com.bindord.eureka.seeder.domain.customer;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.country.District;
 import com.bindord.eureka.seeder.domain.json.Photo;
 import com.bindord.eureka.seeder.validation.ExtendedEmailValidator;
@@ -27,7 +28,7 @@ import java.util.UUID;
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class Customer {
+public class Customer extends BaseDomain {
 
     @Id
     @Column(name = "CustomerId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
@@ -52,9 +53,8 @@ public class Customer {
     @Column(nullable = false)
     private Integer gender;
 
-    @NotBlank
     @Size(min = 2, max = Byte.MAX_VALUE)
-    @Column(nullable = false, length = Byte.MAX_VALUE)
+    @Column(nullable = true, length = Byte.MAX_VALUE)
     private String address;
 
     @ExtendedEmailValidator

@@ -1,5 +1,6 @@
 package com.bindord.eureka.seeder.domain.specialist;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.country.District;
 import com.bindord.eureka.seeder.domain.json.Rating;
 import com.bindord.eureka.seeder.validation.ExtendedEmailValidator;
@@ -30,7 +31,7 @@ import java.util.UUID;
 @TypeDefs({
     @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class Specialist {
+public class Specialist extends BaseDomain {
 
     @Id
     @Column(name = "SpecialistId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
