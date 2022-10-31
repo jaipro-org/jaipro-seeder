@@ -1,0 +1,16 @@
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('1', 'GENERAL','1');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('2', 'GENERAL','2');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('3', 'GENERAL','3');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('4', 'GENERAL','4');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('5', 'GENERAL','5');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('6', 'GENERAL','6');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('7', 'GENERAL','7');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('8', 'GENERAL','8');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('9', 'GENERAL','9');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('10', 'GENERAL','10');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('11', 'GENERAL','11');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('12', 'GENERAL','12');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('13', 'GENERAL','13');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('14', 'GENERAL','14');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('15', 'GENERAL','15');
+INSERT INTO jaipro.specialization (specialization_id, name, profession_id) values ('16', 'GENERAL','16');

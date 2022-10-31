@@ -1,5 +1,6 @@
 package com.bindord.eureka.seeder.domain.specialist;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.json.Photo;
 import com.bindord.eureka.seeder.domain.specialist.json.Experience;
 import com.bindord.eureka.seeder.domain.specialist.json.SocialNetwork;
@@ -26,7 +27,7 @@ import java.util.UUID;
 @TypeDefs({
     @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class SpecialistCv {
+public class SpecialistCv extends BaseDomain {
 
     @Id
     private UUID id;
@@ -48,7 +49,7 @@ public class SpecialistCv {
     private Photo profilePhoto;
 
     @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb", nullable = true)
+    @Column(columnDefinition = "jsonb", nullable = false)
     private List<Experience> experienceTimes;
 
     @JsonManagedReference

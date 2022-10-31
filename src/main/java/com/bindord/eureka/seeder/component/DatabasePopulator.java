@@ -14,11 +14,13 @@ import javax.sql.DataSource;
 @Component
 public class DatabasePopulator {
 
-    public static final String PG_DATABASE_SCHEMA = "public";
     public static final String POPULATE_INSERT_SCRIPTS = "1";
 
     @Value("${db.tables.populate}")
     private String populateScripts;
+
+    @Value("${var.database.schema}")
+    private String PG_DATABASE_SCHEMA;
 
     @Bean
     public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) {
@@ -31,6 +33,8 @@ public class DatabasePopulator {
         if (POPULATE_INSERT_SCRIPTS.equals(populateScripts)) {
             resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_country.sql"));
             resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_district.sql"));
+            resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_profession.sql"));
+            resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_specialization.sql"));
         }
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource);

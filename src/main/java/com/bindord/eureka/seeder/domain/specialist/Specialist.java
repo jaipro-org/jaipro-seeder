@@ -86,7 +86,7 @@ public class Specialist extends BaseDomain {
     private boolean verified;
 
     @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb", nullable = false)
+    @Column(columnDefinition = "jsonb", nullable = true)
     private List<Rating> ratings;
 
     @JsonManagedReference
