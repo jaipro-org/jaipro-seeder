@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://104.198.63.25:5432/${var.database.name}
+    username: appjaipro
+    password: ${DB_PWD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
