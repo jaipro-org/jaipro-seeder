@@ -60,7 +60,7 @@ public class Customer extends BaseDomain {
     @ExtendedEmailValidator
     @NotBlank
     @Size(min = 7, max = 60)
-    @Column(nullable = false, length = 60)
+    @Column(nullable = false, length = 60, unique = true)
     private String email;
 
     @Size(min = 8, max = 12)

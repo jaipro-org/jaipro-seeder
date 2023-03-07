@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/${var.database.name}
     username: postgres
-    password: ${DB_PWD}
+    password: sql
     driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 1
