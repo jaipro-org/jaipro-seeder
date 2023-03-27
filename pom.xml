@@ -11,8 +11,8 @@
     <groupId>com.bindord.eureka</groupId>
     <artifactId>seeder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka-seeder</name>
-    <description>eureka-seeder</description>
+    <name>jaipro-seeder</name>
+    <description>jaipro-seeder</description>
     <properties>
         <java.version>11</java.version>
     </properties>
