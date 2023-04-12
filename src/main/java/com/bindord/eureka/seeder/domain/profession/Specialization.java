@@ -26,8 +26,8 @@ public class Specialization {
     @Column(name = "SpecializationId")
     private Integer id;
 
-    @Size(min = 2, max = 50)
-    @Column(nullable = false, updatable = false, length = 50)
+    @Size(min = 2, max = 70)
+    @Column(nullable = false, updatable = false, length = 70)
     private String name;
 
     @JsonManagedReference
