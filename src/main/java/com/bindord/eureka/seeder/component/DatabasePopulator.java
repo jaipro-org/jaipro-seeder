@@ -36,6 +36,7 @@ public class DatabasePopulator {
             resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_profession.sql"));
             resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_specialization.sql"));
             resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_bank.sql"));
+            resourceDatabasePopulator.addScript(new ClassPathResource("db/inserts/insert_mail.sql"));
         }
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource);
