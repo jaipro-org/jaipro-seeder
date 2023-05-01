@@ -1,6 +1,7 @@
 package com.bindord.eureka.seeder.domain.user;
 
 import com.bindord.eureka.seeder.domain.base.BaseDomain;
+import com.bindord.eureka.seeder.validation.ExtendedEmailValidator;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -31,6 +32,12 @@ public class UserInfo extends BaseDomain {
     @Size(min = 2, max = 36)
     @Column(nullable = false, updatable = false, length = 36)
     private String profileName;
+
+    @ExtendedEmailValidator
+    @NotBlank
+    @Size(min = 7, max = 60)
+    @Column(nullable = false, updatable = false, length = 60)
+    private String email;
 
     public UserInfo() {
     }
