@@ -78,6 +78,11 @@ public class Specialist extends BaseDomain {
     private String phone;
 
     @NotBlank
+    @Size(min = 9, max = 15)
+    @Column(nullable = true, length = 15)
+    private String secondaryPhone;
+
+    @NotBlank
     @Size(min = 7, max = Byte.MAX_VALUE)
     @Column(nullable = false, length = Byte.MAX_VALUE)
     private String publicUrl;
