@@ -1,10 +1,10 @@
 package com.bindord.eureka.seeder.domain.notification;
 
+import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.customer.Customer;
 import com.bindord.eureka.seeder.domain.specialist.Specialist;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Data
-public class Notification {
+public class Notification extends BaseDomain {
 
     @Id
     @Column(name = "NotificationId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
@@ -28,12 +27,12 @@ public class Notification {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", nullable = false, updatable = false)
+    @JoinColumn(name = "SpecialistId", nullable = true, updatable = false)
     private Specialist specialist;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId", nullable = false, updatable = false)
+    @JoinColumn(name = "CustomerId", nullable = true, updatable = false)
     private Customer customer;
 
     @NotBlank
@@ -64,10 +63,6 @@ public class Notification {
 
     @Column(nullable = false)
     private boolean deleted;
-
-    @CreatedDate
-    @Column(name = "creationDate", nullable = false, updatable = false)
-    private LocalDateTime creationDate;
 
     public Notification() {
     }
