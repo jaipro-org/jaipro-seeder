@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://34.30.205.63:5432/${var.database.name}?schema=${var.database.schema}
+    url: jdbc:postgresql://34.170.195.120:5432/${var.database.name}?schema=${var.database.schema}
     username: appjaipro
     password: ${DB_PWD}
     driver-class-name: org.postgresql.Driver

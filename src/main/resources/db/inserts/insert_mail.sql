@@ -1,6 +1,6 @@
 insert into jaipro.mail (mail_id, subject, body, description, inputs)
 values (1, 'Jaipro, recuperación contraseña',
-        '<p>Ingresa a este link para que cambies tu contraseña: <a href="%s/p/cambiar/password/%s?sc=%s">Cambiar</a> <br> Tomar en consideración que el enlace caducará en 24 horas</p>',
+        '<p>Ingresa a este link para que cambies tu contraseña: <a href="__DOMINIO__/auth/actualizar-password?internal=__BASE64__">Cambiar</a> <br> Tomar en consideración que el enlace caducará en 24 horas</p>',
         'Correo para iniciar el proceso de actualizacion de password', '[]') ON CONFLICT DO NOTHING;
 insert into jaipro.mail (mail_id, subject, body, description, inputs)
 values (2, 'Jaipro, se cambio su contraseña con éxito', '<p>Ir al login: <a href="%s/login">Jaipro</a></p>',

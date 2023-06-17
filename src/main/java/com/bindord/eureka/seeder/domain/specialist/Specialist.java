@@ -77,7 +77,6 @@ public class Specialist extends BaseDomain {
     @Column(nullable = false, length = 15)
     private String phone;
 
-    @NotBlank
     @Size(min = 9, max = 15)
     @Column(nullable = true, length = 15)
     private String secondaryPhone;
