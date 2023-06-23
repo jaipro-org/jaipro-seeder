@@ -49,7 +49,7 @@ public class SpecialistBankAccount extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", nullable = false, updatable = false)
+    @JoinColumn(name = "SpecialistId", nullable = false, updatable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
     @JsonManagedReference

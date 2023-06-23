@@ -103,7 +103,7 @@ public class ServiceRequest extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", nullable = true)
+    @JoinColumn(name = "SpecialistId", nullable = true, columnDefinition = "uuid")
     private Specialist specialist;
 
     @JsonManagedReference

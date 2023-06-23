@@ -37,7 +37,7 @@ public class ServiceProposal extends BaseDomain {
     private ServiceRequest serviceRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
     @Schema(description = "Proposal status. 1: Awaiting, 2: Declined, 3: Approved")

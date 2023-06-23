@@ -27,12 +27,12 @@ public class Notification extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", nullable = true, updatable = false)
+    @JoinColumn(name = "SpecialistId", updatable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId", nullable = true, updatable = false)
+    @JoinColumn(name = "CustomerId", updatable = false, columnDefinition = "uuid")
     private Customer customer;
 
     @NotBlank

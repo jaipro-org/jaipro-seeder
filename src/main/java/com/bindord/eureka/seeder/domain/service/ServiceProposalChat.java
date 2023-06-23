@@ -35,7 +35,7 @@ public class ServiceProposalChat extends BaseDomain {
     private ServiceProposal serviceRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
     @NotBlank

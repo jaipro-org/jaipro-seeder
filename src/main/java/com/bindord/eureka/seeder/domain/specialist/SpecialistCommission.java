@@ -28,7 +28,7 @@ public class SpecialistCommission {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", nullable = false, updatable = false)
+    @JoinColumn(name = "SpecialistId", nullable = false, updatable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
     @Schema(description = "The fee that has to pay the specialist to the platform for each service he gives")
