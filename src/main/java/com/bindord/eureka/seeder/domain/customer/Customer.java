@@ -84,7 +84,7 @@ public class Customer extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DistrictId", nullable = true)
+    @JoinColumn(name = "DistrictId", nullable = true, columnDefinition = "integer")
     private District district;
 
 }
