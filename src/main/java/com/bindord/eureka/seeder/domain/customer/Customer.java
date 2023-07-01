@@ -67,7 +67,6 @@ public class Customer extends BaseDomain {
     @Column(nullable = true, length = 12, unique = true)
     private String document;
 
-    @NotBlank
     @Size(min = 9, max = 15)
     @Column(nullable = true, length = 15)
     private String phone;
@@ -76,9 +75,8 @@ public class Customer extends BaseDomain {
     @Column(columnDefinition = "jsonb", nullable = true)
     private Photo profilePhoto;
 
-    @NotBlank
     @Size(min = 7, max = Byte.MAX_VALUE)
-    @Column(nullable = false, length = Byte.MAX_VALUE)
+    @Column(nullable = true, length = Byte.MAX_VALUE)
     private String publicUrl;
 
     @Column(nullable = false)
