@@ -85,7 +85,7 @@ public class Specialist extends BaseDomain {
 
     @NotEmpty
     @Size(min = 7, max = Byte.MAX_VALUE)
-    @Column(nullable = false, length = Byte.MAX_VALUE)
+    @Column(nullable = true, length = Byte.MAX_VALUE)
     private String publicUrl;
 
     @Column(nullable = false)
