@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.UUID;
@@ -32,9 +33,9 @@ public class SpecialistBankAccount extends BaseDomain {
     @Column(nullable = false, length = 24)
     private String accountNumber;
 
-    @NotBlank
+    @NotEmpty
     @Size(min = 12, max = 30)
-    @Column(nullable = false, length = 30)
+    @Column(nullable = true, length = 30)
     private String cci;
 
     @Schema(description = "Currency of the account. E.g: PEN(1), USD(2), CNY(3), etc")
