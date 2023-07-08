@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -76,7 +75,6 @@ public class Customer extends BaseDomain {
     @Column(columnDefinition = "jsonb", nullable = true)
     private Photo profilePhoto;
 
-    @NotEmpty
     @Size(min = 7, max = Byte.MAX_VALUE)
     @Column(nullable = true, length = Byte.MAX_VALUE)
     private String publicUrl;

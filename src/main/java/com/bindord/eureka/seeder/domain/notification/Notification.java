@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 
@@ -45,7 +44,6 @@ public class Notification extends BaseDomain {
     @Column(nullable = false, length = 600)
     private String message;
 
-    @NotEmpty
     @Size(min = 3, max = 72)
     @Column(nullable = true, length = 72)
     private String icon;
