@@ -42,6 +42,10 @@ public class Specialist extends BaseDomain {
     @Column(nullable = false, length = 36)
     private String name;
 
+    @Size(min = 10, max = 20)
+    @Column(name="prueba1")
+    private String prueba1;
+
     @NotBlank
     @Size(min = 2, max = 36)
     @Column(nullable = false, length = 36)
