@@ -1,4 +1,4 @@
---DROP FUNCTION get_list_notification_by_user(integer,integer,uuid,uuid,boolean);
+--DROP FUNCTION jaipro.get_list_notification_by_user(integer,integer,uuid,uuid,boolean);
 CREATE OR REPLACE FUNCTION jaipro.get_list_notification_by_user(
     p_page integer,
     p_page_size integer,
@@ -18,6 +18,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_notification_by_user(
                 to_customer     boolean,
                 read            boolean,
                 creation_date   timestamp,
+                modified_date   timestamp,
                 rows            integer
             )
     LANGUAGE plpgsql
@@ -35,6 +36,7 @@ begin
                          ntf.to_customer,
                          ntf.read,
                          ntf.creation_date,
+                         ntf.modified_date,
                          cast(count(*) over () as int) as rows
                   from notification ntf
                   where (p_customer_id IS NULL OR ntf.customer_id = p_customer_id)
