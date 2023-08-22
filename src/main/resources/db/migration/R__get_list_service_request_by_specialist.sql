@@ -13,22 +13,21 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_service_request_by_specialist(p_speci
 AS
 $function$
 begin
-    return query (select sr.service_request_id          as id,
-                         c."name" || ' ' || c.last_name as petitioner,
-                         p."name"                       as category,
-                         sr.detail                      as description,
-                         sr.creation_date               as quotation_date,
-                         sr.status
-                  from specialist_specialization ss
-                           join service_request sr on ss.profession_id = sr.profession_id
-                           join customer c on sr.customer_id = c.customer_id
-                           join profession p on sr.profession_id = p.profession_id
-                  where ss.specialist_id = p_specialist_id
-                    and (p_status = '' or sr.status = any (cast(p_status as int[])))
-                  group by sr.service_request_id, c."name", c.last_name, p."name", sr.detail, sr.creation_date,
-                           sr.status
-                  order by sr.creation_date desc
-                  limit p_page_size offset ((p_page - 1) * p_page_size));
+   return query (select
+   						sp.service_proposal_id as id,
+   						c."name" || ' ' || c.last_name as petitioner,
+   						p."name"                       as category,
+   						sr.detail                      as description,
+   						sp.creation_date               as quotation_date,
+   						sp.status_proposal as status
+   				  from service_request sr
+                      join service_proposal sp on sr.service_request_id = sp.service_request_id
+                      join customer c on sr.customer_id = c.customer_id
+                      join profession p on sr.profession_id = p.profession_id
+   				  where sp.specialist_id = p_specialist_id
+   				  and (p_status = '' or sp.status_proposal = any (cast(p_status as int[])))
+                     order by sp.creation_date desc
+                     limit p_page_size offset ((p_page - 1) * p_page_size));
 end
 $function$
 ;
