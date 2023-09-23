@@ -1,4 +1,5 @@
 CREATE OR REPLACE FUNCTION jaipro.get_list_service_request_open(p_professions text, p_id_districts text,
+                                                                p_specialist_id uuid,
                                                                 p_last_days integer, p_page integer,
                                                                 p_page_size integer)
     RETURNS TABLE
@@ -35,6 +36,7 @@ begin
                     and (p_id_districts = '' or sr.district_id = any (cast(p_id_districts as int[])))
                     and (p_last_days IS NULL or
                          sr.creation_date > (now()::date::timestamp - (p_last_days||' DAYS')::interval))
+                    and (specialist_id is null or specialist_id = p_specialist_id)
                   order by sr.creation_date desc
                   limit p_page_size offset ((p_page - 1) * p_page_size));
 end
