@@ -40,7 +40,7 @@ public class ServiceProposal extends BaseDomain {
     @JoinColumn(name = "SpecialistId", insertable = false, updatable = false, nullable = false, columnDefinition = "uuid")
     private Specialist specialist;
 
-    @Schema(description = "Proposal status. 1: Awaiting, 2: Declined, 3: Approved")
+    @Schema(description = "Proposal status. 1: Pending review, 2: Approved, 3: Declined")
     @NotNull
     @Min(value = 1)
     @Max(value = 3)
