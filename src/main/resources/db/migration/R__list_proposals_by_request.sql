@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION jaipro.list_proposals_by_request(p_service_request_id
                     specialist_id               uuid,
                     full_name                   text,
                     photo                       text,
-                    profession_id               integer
+                    profession_id               integer,
                     professions                 text,
                     ratings                     jsonb,
                     proposal                    character varying,
