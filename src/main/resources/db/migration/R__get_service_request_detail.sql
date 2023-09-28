@@ -9,6 +9,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_service_request_detail(p_service_request_i
                 detail              character varying,
                 creation_date       timestamp without time zone,
                 status              integer,
+                rating_done         boolean,
                 gallery             jsonb
             )
  LANGUAGE plpgsql
@@ -23,6 +24,7 @@ begin
 						sr.detail,
 						sr.creation_date,
 						sr.status,
+						sr.rating_done,
 						sr.gallery
 				  from service_request sr
 				  join profession p on sr.profession_id = P.profession_id
