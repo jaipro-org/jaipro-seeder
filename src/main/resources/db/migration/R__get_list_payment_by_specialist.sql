@@ -1,47 +1,51 @@
-create or replace function jaipro.get_list_payment_by_specialist(p_specialist_id uuid, p_profession_ids text, p_last_days integer, p_district_ids text, p_page integer, p_page_size integer)
-	returns table(code character varying, type text, customer text, amount float8, commission float8, broadcast_date text, expiration_date text, status integer, rows integer)
-	LANGUAGE plpgsql
-as $function$
+CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id uuid, p_status_ids text, p_fecha_creacion date, p_page integer, p_page_size integer)
+ RETURNS TABLE(code_payment character varying, modality text, type text, customer text, amount double precision, commission double precision, creation_date text, expiration_date text, status integer, rows integer)
+ LANGUAGE plpgsql
+AS $function$
 declare
-	v_payment_type_commission integer := 8;
-	v_commission_type integer := 1;
-	v_commission_value float8;
+	v_payment_modality_cash integer := 1;
+	v_payment_modality_online integer := 2;
+	v_payment_type_service integer := 1;
+	v_payment_type_commission integer := 2;
+	v_payment_type_honorary integer := 3;
+	v_comission_value float8;
 begin
-
-	select
-		c.commission_value into v_commission_value
-	from jaipro.commission c
-	where c.commission_type = v_commission_type;
 
 	return query(
 		select
-			p.operation_number as code,
+			p.operation_number as codePayment,
 			case p.modality
-				when 1 then 'Efectivo'
-				when 2 then 'Online'
+				when v_payment_modality_cash then 'Efectivo'
+				when v_payment_modality_online then 'Online'
+				else ''
+			end as modality,
+			case p.type
+				when v_payment_type_service then 'Servicio'
+				when v_payment_type_commission then 'Comisión'
+				when v_payment_type_honorary then 'Honorario'
 				else ''
 			end as type,
 			c."name" || ' ' || c.last_name as customer,
-			p.amount,
-			case
-				when p2.amount is null then (p.amount * (v_commission_value * 0.01))
-				else (p2.amount)
+			case p.type
+				when v_payment_type_service then p.amount
+				when v_payment_type_commission then (select tp.amount from payment tp where tp.service_request_id = p.service_request_id and tp.type = v_payment_type_service)
+				when v_payment_type_honorary then (select tp.amount from payment tp where tp.service_request_id = p.service_request_id and tp.type = v_payment_type_service)
+				else v_comission_value
+			end as amount,
+			case p.type
+				when v_payment_type_commission then p.amount
+				else v_comission_value
 			end as commission,
-			TO_CHAR(p.creation_date, 'dd/mm/yyyy') as broadcast_date,
-			TO_CHAR(p.expiration_date, 'dd/mm/yyyy') as expiration_date,
+			TO_CHAR(p.creation_date, 'dd-mm-yyyy') as creation_date,
+			TO_CHAR(p.expiration_date, 'dd-mm-yyyy') as expiration_date,
 			p.status as status,
 			CAST(count(*) over() as int) as rows
 		from payment p
-		join customer c on p.customer_id = c.customer_id
-		left join payment p2 on p.service_request_id = p2.service_request_id
-							and p2."type" = v_payment_type_commission
-		join service_request sr on p.service_request_id = sr.service_request_id
-		where p."type" not in (v_payment_type_commission)
-		and sr.specialist_id = p_specialist_id
-		and (p_profession_ids = '' or p.profession_id = any (cast(p_profession_ids as int[])))
-		and (p_district_ids = '' or p.profession_id = any (cast(p_district_ids as int[])))
-		and (p_last_days IS NULL or
-                         p.creation_date > (now()::date::timestamp - (p_last_days||' DAYS')::interval))
+		inner join customer c on p.customer_id = c.customer_id
+		inner join service_request sr on p.service_request_id = sr.service_request_id
+		where sr.specialist_id = p_specialist_id
+		and (p_status_ids = '' or p.status = any (cast(p_status_ids as int[])))
+		and (p_fecha_creacion is null or p.creation_date::date = p_fecha_creacion)
 		order by p.creation_date desc
 		limit p_page_size offset ((p_page - 1) * p_page_size)
 	);
