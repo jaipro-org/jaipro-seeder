@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id uuid, p_status_ids text, p_fecha_creacion date, p_page integer, p_page_size integer)
+CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id uuid, p_status_ids text, p_last_days integer, p_page integer, p_page_size integer)
  RETURNS TABLE(code_payment character varying, modality text, type text, customer text, amount double precision, commission double precision, creation_date text, expiration_date text, status integer, rows integer)
  LANGUAGE plpgsql
 AS $function$
@@ -45,7 +45,7 @@ begin
 		inner join service_request sr on p.service_request_id = sr.service_request_id
 		where sr.specialist_id = p_specialist_id
 		and (p_status_ids = '' or p.status = any (cast(p_status_ids as int[])))
-		and (p_fecha_creacion is null or p.creation_date::date = p_fecha_creacion)
+		and (p_last_days IS NULL or p.creation_date > (now()::date::timestamp - (p_last_days||' DAYS')::interval))
 		order by p.creation_date desc
 		limit p_page_size offset ((p_page - 1) * p_page_size)
 	);
