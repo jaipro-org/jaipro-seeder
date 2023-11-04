@@ -30,7 +30,7 @@ public class Mail {
     private String subject;
 
     @Column(length = 2000, nullable = false)
-    private String body;
+    private String content;
 
     @Column(length = 128, nullable = true)
     private String description;

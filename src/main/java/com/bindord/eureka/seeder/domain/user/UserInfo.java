@@ -19,7 +19,7 @@ import java.util.UUID;
 public class UserInfo extends BaseDomain {
 
     @Id
-    @Column(name = "UserInfoId")
+    @Column(name = "UserId")
     private UUID id;
 
     @NotNull
