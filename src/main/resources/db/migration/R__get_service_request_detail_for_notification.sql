@@ -7,6 +7,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_service_request_detail_for_notification(p_
                 customer_photo_url  text,
                 district_name       character varying,
                 profession_name     character varying,
+                specialist_id       uuid,
                 detail              character varying,
                 creation_date       timestamp without time zone,
                 status              integer,
