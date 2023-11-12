@@ -27,16 +27,16 @@ ON CONFLICT DO NOTHING;
 insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
                                  created_by, creation_date)
 values (1002, 'SERVICE_REQUEST_PROPOSAL',
-        'Su proyecto ha recibido una propuesta.',
-        'Cuando el proyecto publicado recibe una propuesta', true, 1, ARRAY [''], 'master', now())
+        'Recibió una propuesta su proyecto de busqueda de ${PROFESSION_NAME} para el distrito de ${DISTRICT_NAME}',
+        'Cuando el proyecto publicado recibe una propuesta', true, 1, ARRAY ['PROFESSION_NAME', 'DISTRICT_NAME'], 'master', now())
 ON CONFLICT DO NOTHING;
 
 insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
                                  created_by, creation_date)
 values (1003, 'PROPOSAL_STATUS',
-        'Su propuesta realizado al proyecto de ${PROFESSION_NAME} fue ${PROPOSAL_STATUS_NAME}.',
+        'Su propuesta realizada al proyecto de ${PROFESSION_NAME} para el distrito de ${DISTRICT_NAME} fue ${PROPOSAL_STATUS_NAME}.',
         'Cuando la propuesta del especialista es aceptada o rechazada', true, 1,
-        ARRAY ['PROFESSION_NAME', 'PROPOSAL_STATUS_NAME'], 'master', now())
+        ARRAY ['PROFESSION_NAME', 'DISTRICT_NAME', 'PROPOSAL_STATUS_NAME'], 'master', now())
 ON CONFLICT DO NOTHING;
 insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
                                  created_by, creation_date)

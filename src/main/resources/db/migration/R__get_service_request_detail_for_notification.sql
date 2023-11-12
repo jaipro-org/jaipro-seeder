@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION jaipro.get_service_request_detail(p_service_request_id uuid)
+CREATE OR REPLACE FUNCTION jaipro.get_service_request_detail_for_notification(p_service_request_id uuid)
  RETURNS TABLE
             (
                 id                  uuid,
@@ -10,8 +10,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_service_request_detail(p_service_request_i
                 detail              character varying,
                 creation_date       timestamp without time zone,
                 status              integer,
-                rating_done         boolean,
-                gallery             jsonb
+                rating_done         boolean
             )
  LANGUAGE plpgsql
 AS $function$
@@ -23,11 +22,11 @@ begin
                         c.profile_photo ->> 'url' as customer_photo_url,
                         d.name as district_name,
                         p.name as profession_name,
+                        sr.specialist_id,
 						sr.detail,
 						sr.creation_date,
 						sr.status,
-						sr.rating_done,
-						sr.gallery
+						sr.rating_done
 				  from service_request sr
 				  join profession p on sr.profession_id = P.profession_id
                   join customer c on sr.customer_id = c.customer_id
