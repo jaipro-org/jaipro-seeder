@@ -57,9 +57,9 @@ ON CONFLICT DO NOTHING;
 insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
                                  created_by, creation_date)
 values (1006, 'SERVICE_REQUEST_PAYMENT_STATUS',
-        'El pago enviado por el servicio ${PROFESSION_NAME} ha sido ${PAYMENT_STATUS_NAME}.',
+        'El pago por el proyecto de ${PROFESSION_NAME} para el distrito de ${DISTRICT_NAME} ha sido ${PAYMENT_STATUS}.',
         'Cuando el especialista recibe una actualizacion del estado del cobro del servicio (Aprobado/Observado)',
-        true, 1, ARRAY ['PROFESSION_NAME', 'PAYMENT_STATUS_NAME'], 'master', now())
+        true, 1, ARRAY ['PROFESSION_NAME', 'DISTRICT_NAME', 'PAYMENT_STATUS_NAME'], 'master', now())
 ON CONFLICT DO NOTHING;
 
 insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
