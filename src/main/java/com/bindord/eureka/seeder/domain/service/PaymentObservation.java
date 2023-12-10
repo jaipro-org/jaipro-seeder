@@ -24,12 +24,12 @@ public class PaymentObservation extends BaseDomain {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PaymentId", referencedColumnName = "PaymentId", updatable = false)
+    @JoinColumn(name = "PaymentId", referencedColumnName = "PaymentId", columnDefinition = "uuid", updatable = false, nullable = false)
     private Payment payment;
 
     @Schema(description = "Observation of the payment.")
-    @Size(min = 8, max = 150)
-    @Column(nullable = false, length = 150)
+    @Size(min = 8, max = 250)
+    @Column(nullable = false, length = 250)
     private String observation;
 
     public PaymentObservation() {
