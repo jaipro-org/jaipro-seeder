@@ -93,12 +93,12 @@ public class ServiceRequest extends BaseDomain {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "CustomerId", nullable = false, updatable = false)
     private Customer customer;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProfessionId", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ProfessionId", nullable = false, updatable = false)
     private Profession profession;
 
     @JsonManagedReference

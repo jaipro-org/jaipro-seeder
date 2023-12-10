@@ -27,9 +27,9 @@ begin
                          sp.max_cost,
                          sr.creation_date               as quotation_date
                   from service_proposal sp
-                           join customer c on sp.customer_id = c.customer_id
-                           join profession p on sp.profession_id = p.profession_id
                            join service_request sr on sp.service_request_id = sr.service_request_id
+                           join customer c on sr.customer_id = c.customer_id
+                           join profession p on sr.profession_id = p.profession_id
                            join district d on sr.district_id = d.district_id
                   where sp.service_proposal_id = p_id);
 end

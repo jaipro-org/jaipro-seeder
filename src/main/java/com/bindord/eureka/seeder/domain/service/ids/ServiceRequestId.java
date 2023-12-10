@@ -18,33 +18,23 @@ public class ServiceRequestId implements Serializable {
     @Column(name = "ServiceRequestId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID serviceRequestId;
 
-    @Column(name = "CustomerId")
-    private UUID customerId;
-
-    @Column(name = "ProfessionId")
-    private Integer professionId;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRequestId that = (ServiceRequestId) o;
-        return serviceRequestId.equals(that.serviceRequestId) &&
-                customerId.equals(that.customerId) &&
-                professionId.equals(that.professionId);
+        return serviceRequestId.equals(that.serviceRequestId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(serviceRequestId, customerId, professionId);
+        return Objects.hash(serviceRequestId);
     }
 
     public ServiceRequestId() {
     }
 
-    public ServiceRequestId(UUID serviceRequestId, UUID customerId, Integer professionId) {
+    public ServiceRequestId(UUID serviceRequestId) {
         this.serviceRequestId = serviceRequestId;
-        this.customerId = customerId;
-        this.professionId = professionId;
     }
 }

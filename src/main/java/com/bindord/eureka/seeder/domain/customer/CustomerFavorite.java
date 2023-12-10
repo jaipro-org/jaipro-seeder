@@ -22,14 +22,6 @@ public class CustomerFavorite {
     @EmbeddedId
     private CustomerSpecialistId id;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId", insertable = false, updatable = false)
-    private Customer customer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SpecialistId", insertable = false, updatable = false)
-    private Specialist specialist;*/
-
     @Column(nullable = false)
     private boolean enabled;
 

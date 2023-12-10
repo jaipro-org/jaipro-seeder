@@ -6,22 +6,22 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_notification_by_user(
     p_read boolean default null)
     RETURNS TABLE
             (
-                id uuid,
-                user_id         uuid,
-                content         character varying,
-                image_url         character varying,
-                link            character varying,
-                type            integer,
-                read            boolean,
-                creation_date   timestamp,
-                modified_date   timestamp,
-                rows            integer
+                id            uuid,
+                user_id       uuid,
+                content       character varying,
+                image_url     character varying,
+                link          character varying,
+                type          integer,
+                read          boolean,
+                creation_date timestamp,
+                modified_date timestamp,
+                rows          integer
             )
     LANGUAGE plpgsql
 AS
 $function$
 begin
-    return query (select ntf.user_notification_id as id,
+    return query (select ntf.user_notification_id      as id,
                          ntf.user_id,
                          ntf.content,
                          ntf.image_url,

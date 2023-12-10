@@ -13,7 +13,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
@@ -34,10 +33,7 @@ public class ServiceRating extends BaseDomain {
     private Specialist specialist;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", columnDefinition = "uuid", updatable = false),
-            @JoinColumn(name = "ProfessionId", referencedColumnName = "ProfessionId", updatable = false)
-    })
+    @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", columnDefinition = "uuid", updatable = false)
     private ServiceRequest serviceRequest;
 
     @Schema(description = "Qualification submitted by the customer")

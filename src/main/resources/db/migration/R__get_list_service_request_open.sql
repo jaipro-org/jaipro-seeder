@@ -35,7 +35,7 @@ begin
                     and (p_professions = '' or p.profession_id = any (cast(p_professions as int[])))
                     and (p_id_districts = '' or sr.district_id = any (cast(p_id_districts as int[])))
                     and (p_last_days IS NULL or
-                         sr.creation_date > (now()::date::timestamp - (p_last_days||' DAYS')::interval))
+                         sr.creation_date > (now()::date::timestamp - (p_last_days || ' DAYS')::interval))
                     and (specialist_id is null or specialist_id = p_specialist_id)
                   order by sr.creation_date desc
                   limit p_page_size offset ((p_page - 1) * p_page_size));

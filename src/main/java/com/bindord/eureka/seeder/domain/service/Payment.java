@@ -37,11 +37,7 @@ public class Payment extends BaseDomain {
     private PaymentId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", insertable = false, updatable = false),
-            @JoinColumn(name = "CustomerId", referencedColumnName = "CustomerId", insertable = false, updatable = false),
-            @JoinColumn(name = "ProfessionId", referencedColumnName = "ProfessionId", insertable = false, updatable = false)
-    })
+    @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", updatable = false)
     private ServiceRequest serviceRequest;
 
     @Schema(description = "In evaluation, maybe will be removed this field")
@@ -87,6 +83,11 @@ public class Payment extends BaseDomain {
     @Digits(integer = 4, fraction = 2)
     @Column(precision = 4, scale = 2, nullable = false)
     private Double amount;
+
+    @Column
+    @Min(value = 1)
+    @Max(value = 4)
+    private Integer methodId;
 
     @Schema(description = "Indicates if the operation number of the bank transaction was successfully verified")
     @Column(nullable = false)

@@ -29,11 +29,7 @@ public class ServiceProposal extends BaseDomain {
     private ServiceProposalId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", insertable = false, updatable = false),
-            @JoinColumn(name = "CustomerId", referencedColumnName = "CustomerId", insertable = false, updatable = false),
-            @JoinColumn(name = "ProfessionId", referencedColumnName = "ProfessionId", insertable = false, updatable = false)
-    })
+    @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", updatable = false)
     private ServiceRequest serviceRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)

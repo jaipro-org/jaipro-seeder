@@ -18,23 +18,11 @@ public class PaymentId implements Serializable {
     @Column(name = "PaymentId", columnDefinition = "uuid DEFAULT gen_random_uuid()")
     private UUID paymentId;
 
-    @Column(name = "ServiceRequestId")
-    private UUID serviceRequestId;
-
-    @Column(name = "CustomerId")
-    private UUID customerId;
-
-    @Column(name = "ProfessionId")
-    private Integer professionId;
-
     public PaymentId() {
     }
 
-    public PaymentId(UUID paymentId, UUID serviceRequestId, UUID customerId, Integer professionId) {
+    public PaymentId(UUID paymentId) {
         this.paymentId = paymentId;
-        this.serviceRequestId = serviceRequestId;
-        this.customerId = customerId;
-        this.professionId = professionId;
     }
 
     @Override
@@ -42,14 +30,11 @@ public class PaymentId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentId that = (PaymentId) o;
-        return paymentId.equals(that.paymentId) &&
-                serviceRequestId.equals(that.serviceRequestId) &&
-                customerId.equals(that.customerId) &&
-                professionId.equals(that.professionId);
+        return paymentId.equals(that.paymentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(paymentId, serviceRequestId, customerId, professionId);
+        return Objects.hash(paymentId);
     }
 }

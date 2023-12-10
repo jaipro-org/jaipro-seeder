@@ -18,9 +18,6 @@ public class ServiceRatingId implements Serializable {
     @Column(name = "ServiceRequestId", columnDefinition = "uuid")
     private UUID serviceRequestId;
 
-    @Column(name = "ProfessionId")
-    private Integer professionId;
-
     public ServiceRatingId(){}
 
     @Override
@@ -28,11 +25,11 @@ public class ServiceRatingId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServiceRatingId that = (ServiceRatingId) o;
-        return serviceRequestId.equals(that.serviceRequestId) && professionId.equals(that.professionId);
+        return serviceRequestId.equals(that.serviceRequestId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(serviceRequestId, professionId);
+        return Objects.hash(serviceRequestId);
     }
 }
