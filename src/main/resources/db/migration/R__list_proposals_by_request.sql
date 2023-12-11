@@ -10,6 +10,8 @@ CREATE OR REPLACE FUNCTION jaipro.list_proposals_by_request(p_service_request_id
                 professions         text,
                 ratings             jsonb,
                 proposal            character varying,
+                min_cost            integer,
+                max_cost            integer,
                 creation_date       timestamp without time zone,
                 rows                integer
             )
@@ -30,6 +32,8 @@ begin
                              t.professions,
                              s.ratings,
                              sp.proposal,
+                             sp.min_cost,
+                             sp.max_cost,
                              sp.creation_date,
                              CAST(count(*) over () as int)            as rows
                       from service_proposal sp
@@ -56,6 +60,8 @@ begin
                          t.professions,
                          s.ratings,
                          sp.proposal,
+                         sp.min_cost,
+                         sp.max_cost,
                          sp.creation_date,
                          CAST(count(*) over () as int)            as rows
                   from service_proposal sp
