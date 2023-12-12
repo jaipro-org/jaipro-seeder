@@ -18,8 +18,8 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id
 AS
 $function$
 declare
-    v_payment_modality_cash   integer := 1;
-    v_payment_modality_online integer := 2;
+    v_payment_modality_online integer := 1;
+    v_payment_modality_cash   integer := 2;
     v_payment_type_service    integer := 1;
     v_payment_type_commission integer := 2;
     v_payment_type_honorary   integer := 3;
