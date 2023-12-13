@@ -5,13 +5,14 @@ CREATE OR REPLACE FUNCTION jaipro.save_specialist_in_service_request(p_service_r
 AS
 $function$
 declare
-    v_state_accepted integer := 2;
+    v_state_accepted_for_svc integer := 4;
+    v_state_accepted_for_proposal integer := 2;
     v_state_canceled integer := 3;
 begin
 
     update jaipro.service_request
     set specialist_id = p_specialist_id,
-        status        = v_state_accepted
+        status        = v_state_accepted_for_svc
     where service_request_id = p_service_request_id;
 
     update jaipro.service_proposal
@@ -20,7 +21,7 @@ begin
       and service_proposal_id <> p_service_proposal_id;
 
     update jaipro.service_proposal
-    set status_proposal = v_state_accepted
+    set status_proposal = v_state_accepted_for_proposal
     where service_proposal_id = p_service_proposal_id;
 
     return 1;
