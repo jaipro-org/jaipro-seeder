@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION jaipro.save_specialist_in_service_request(p_service_r
 AS
 $function$
 declare
-    v_state_accepted integer := 4;
+    v_state_accepted integer := 2;
     v_state_canceled integer := 3;
 begin
 

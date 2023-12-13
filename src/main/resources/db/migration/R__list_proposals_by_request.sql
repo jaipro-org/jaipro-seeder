@@ -20,7 +20,7 @@ AS
 $function$
 declare
     v_state_open     integer := 1;
-    v_state_accepted integer := 4;
+    v_state_accepted integer := 2;
 begin
     if (v_state_open = (select status from service_request sr where sr.service_request_id = p_service_request_id)) then
         return query (select sp.service_request_id,

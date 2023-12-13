@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION jaipro.create_default_proposal(p_service_request_id u
 AS
 $function$
 declare
-    v_state_accepted integer := 4;
+    v_state_accepted integer := 2;
     v_prof_name      varchar;
     v_prof_last_name varchar;
 begin
