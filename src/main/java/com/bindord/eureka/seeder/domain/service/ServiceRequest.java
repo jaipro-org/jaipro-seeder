@@ -57,8 +57,8 @@ public class ServiceRequest extends BaseDomain {
     private Integer status;
 
     @NotBlank
-    @Size(min = 60, max = 400)
-    @Column(nullable = true, length = 400)
+    @Size(min = 60, max = 600)
+    @Column(nullable = true, length = 600)
     private String detail;
 
     @Schema(description = "Counter that saves the total of proposals received in the request")
