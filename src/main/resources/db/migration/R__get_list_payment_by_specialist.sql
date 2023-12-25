@@ -3,6 +3,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id
                                                                  p_page_size integer)
     RETURNS TABLE
             (
+                payment_id      uuid,
                 code_payment    character varying,
                 modality        text,
                 type            text,
@@ -26,7 +27,9 @@ declare
     v_comission_value         float8;
 begin
 
-    return query (select p.operation_number                       as codePayment,
+    return query (select
+                         p.payment_id as payment_id,
+                         p.operation_number                       as codePayment,
                          case p.modality
                              when v_payment_modality_cash then 'Efectivo'
                              when v_payment_modality_online then 'Online'
