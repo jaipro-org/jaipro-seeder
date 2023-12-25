@@ -1,22 +1,24 @@
 CREATE OR REPLACE FUNCTION jaipro.get_detail_service_proposal_by_id(p_id uuid)
     RETURNS TABLE
             (
-                id               uuid,
-                status_service   integer,
-                status_proposal  integer,
-                customer         text,
-                requirement      character varying,
-                location         character varying,
-                application_date timestamp without time zone,
-                min_cost         integer,
-                max_cost         integer,
-                quotation_date   timestamp without time zone
+                id                 uuid,
+                service_request_id uuid,
+                status_service     integer,
+                status_proposal    integer,
+                customer           text,
+                requirement        character varying,
+                location           character varying,
+                application_date   timestamp without time zone,
+                min_cost           integer,
+                max_cost           integer,
+                quotation_date     timestamp without time zone
             )
     LANGUAGE plpgsql
 AS
 $function$
 begin
     return query (select sp.service_proposal_id         as id,
+                         sr.service_request_id          as service_request_id,
                          sr.status                      as status_service,
                          sp.status_proposal             as status_proposal,
                          c."name" || ' ' || c.last_name as customer,
