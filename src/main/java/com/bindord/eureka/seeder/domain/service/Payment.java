@@ -2,7 +2,6 @@ package com.bindord.eureka.seeder.domain.service;
 
 import com.bindord.eureka.seeder.domain.base.BaseDomain;
 import com.bindord.eureka.seeder.domain.json.Photo;
-import com.bindord.eureka.seeder.domain.service.ids.PaymentId;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -12,11 +11,12 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -33,11 +33,13 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 public class Payment extends BaseDomain {
 
-    @EmbeddedId
-    private PaymentId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PaymentId")
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", updatable = false)
+    @JoinColumn(name = "ServiceRequestId", referencedColumnName = "ServiceRequestId", columnDefinition = "uuid", updatable = false)
     private ServiceRequest serviceRequest;
 
     @Schema(description = "In evaluation, maybe will be removed this field")
@@ -101,7 +103,7 @@ public class Payment extends BaseDomain {
 
     }
 
-    public Payment(PaymentId id) {
+    public Payment(Integer id) {
         this.id = id;
     }
 }

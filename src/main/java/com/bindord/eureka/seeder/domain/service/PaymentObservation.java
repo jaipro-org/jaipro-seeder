@@ -24,7 +24,7 @@ public class PaymentObservation extends BaseDomain {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PaymentId", referencedColumnName = "PaymentId", columnDefinition = "uuid", updatable = false, nullable = false)
+    @JoinColumn(name = "PaymentId", referencedColumnName = "PaymentId", updatable = false, nullable = false)
     private Payment payment;
 
     @Schema(description = "Observation of the payment.")
