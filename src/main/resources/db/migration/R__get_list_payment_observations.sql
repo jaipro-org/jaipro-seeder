@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION jaipro.get_list_payment_observations(p_payment_id uuid, p_page integer, p_page_size integer)
+CREATE OR REPLACE FUNCTION jaipro.get_list_payment_observations(p_payment_id integer, p_page integer, p_page_size integer)
 	RETURNS TABLE(id integer, observation character varying, creation_date text, rows integer)
 	LANGUAGE plpgsql
 AS $function$

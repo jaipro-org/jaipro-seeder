@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_payment_by_specialist(p_specialist_id
                                                                  p_page_size integer)
     RETURNS TABLE
             (
-                payment_id      uuid,
+                payment_id      integer,
                 code_payment    character varying,
                 modality        text,
                 type            text,
