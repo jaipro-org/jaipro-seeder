@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION jaipro.get_detail_service_payment(p_proposal_id uuid)
- RETURNS TABLE(service_request_id uuid, customer text, profession character varying, district character varying, quotation_date text, total_amount integer, payment_id uuid, amount float8, modality integer, method_id integer, bacnk_id integer)
+ RETURNS TABLE(service_request_id uuid, customer text, profession character varying, district character varying, quotation_date text, total_amount integer, payment_id integer, amount float8, modality integer, method_id integer, bacnk_id integer)
  LANGUAGE plpgsql
 AS $function$
 declare
