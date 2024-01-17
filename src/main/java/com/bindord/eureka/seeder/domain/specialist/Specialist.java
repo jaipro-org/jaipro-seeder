@@ -88,6 +88,11 @@ public class Specialist extends BaseDomain {
     @Column(nullable = false)
     private boolean verified;
 
+    @Min(value = 0)
+    @Max(value = 10)
+    @Column(nullable = true)
+    private Integer verifiedStatus;
+
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", nullable = true)
     private List<Rating> ratings;
