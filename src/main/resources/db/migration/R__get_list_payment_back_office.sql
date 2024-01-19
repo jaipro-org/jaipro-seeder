@@ -61,7 +61,7 @@ begin
 			CAST(count(*) over () as int) as rows
 		from payment p
 		where (p_code_payment = '' or p.operation_number = p_code_payment)
-		and (p_types_ids = '' or p.status = any (cast(p_types_ids as int[])))
+		and (p_types_ids = '' or p.type = any (cast(p_types_ids as int[])))
 		and (p_last_days IS NULL or
                         p.creation_date > (now()::date::timestamp - (p_last_days || ' DAYS')::interval))
 		order by p.creation_date desc
@@ -71,5 +71,3 @@ begin
 end
 $function$
 ;
-
-
