@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION jaipro.get_list_service_request_by_customer(p_custome
                 status          text,
                 enabled_rating  boolean,
                 rating_done     boolean,
-                is_finished     boolean
+                finished        boolean
             )
     LANGUAGE plpgsql
 AS
@@ -36,14 +36,14 @@ begin
                              end                                          as status,
                          sr.enabled_rating,
                          sr.rating_done,
-                         (case sr.status when 7 then true else false end) as is_finished
+                         (case sr.status when 7 then true else false end) as finished
                   from service_request sr
                            join profession p on sr.profession_id = p.profession_id
                            join district d on sr.district_id = d.district_id
                   where sr.customer_id = p_customer_id
                     and (
-                          (p_status = 1 and sr.status not in (state_cancelled, state_finished)) or
-                          (p_status = 2 and sr.status in (state_cancelled, state_finished))
+                      (p_status = 1 and sr.status not in (state_cancelled, state_finished)) or
+                      (p_status = 2 and sr.status in (state_cancelled, state_finished))
                       )
                   order by sr.creation_date desc
                   limit p_page_size offset ((p_page - 1) * p_page_size));
