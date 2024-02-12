@@ -54,6 +54,9 @@ public class District extends BaseDomain {
     @OneToMany(mappedBy = "district")
     private List<WorkLocation> workLocations;
 
+    @Column(nullable = true)
+    private boolean enabled;
+
     public District() {
     }
 
