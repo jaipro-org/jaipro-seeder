@@ -23,6 +23,9 @@ public class Profession extends BaseDomain {
     @Column(nullable = false, updatable = false, length = 50)
     private String name;
 
+    @Column(nullable = true)
+    private boolean enabled;
+
     public Profession() {
     }
 
