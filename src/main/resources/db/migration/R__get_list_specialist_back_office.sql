@@ -1,10 +1,11 @@
 CREATE OR REPLACE FUNCTION jaipro.get_list_specialist_back_office(p_fullname text, p_status text, p_last_days integer, p_page integer, p_page_size integer)
- RETURNS TABLE(dni character varying, name character varying, last_name character varying, phone character varying, email character varying, professions text, locations text, create_at text, id_status integer, status text, rows int)
+ RETURNS TABLE(id uuid, dni character varying, name character varying, last_name character varying, phone character varying, email character varying, professions text, locations text, create_at text, id_status integer, status text, rows integer)
  LANGUAGE plpgsql
 AS $function$
 begin
 	return query (
 		select
+			s.specialist_id as id,
 			s."document" as dni,
 			s."name" as nombres,
 			s.last_name as apellidos,
@@ -32,7 +33,7 @@ begin
 		and (p_status = '' or s.verified_status = any (cast(p_status as int[])))
 		and (p_last_days IS NULL
 			or s.creation_date > (now()::date::timestamp - (p_last_days || ' DAYS')::interval))
-		group by s."document", s."name", s.last_name, s.phone, s.email,
+		group by s.specialist_id, s."document", s."name", s.last_name, s.phone, s.email,
 			s.creation_date, s.verified_status, s.verified_status
 		order by s.creation_date desc
 		limit p_page_size offset ((p_page - 1) * p_page_size)
