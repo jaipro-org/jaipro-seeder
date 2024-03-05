@@ -11,8 +11,8 @@ begin
 			s.last_name as apellidos,
 			s.phone as telefono,
 			s.email as correo,
-			string_agg(p."name", ' | ') as profesiones,
-			string_agg(d."name", ' | ')  as locaciones_trabajo,
+			string_agg(distinct p."name", ' | ') as profesiones,
+			string_agg(distinct d."name", ' | ')  as locaciones_trabajo,
 			TO_CHAR(s.creation_date, 'dd-mm-yyyy') as fecha_creacion,
 			s.verified_status as id_status,
 			(case s.verified_status
