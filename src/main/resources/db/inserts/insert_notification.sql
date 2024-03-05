@@ -69,3 +69,19 @@ values (1007, 'SERVICE_REQUEST_CHAT',
         'Cuando el cliente/especialista recibe un nuevo mensaje',
         true, 1, ARRAY ['USER_FULL_NAME'], 'master', now())
 ON CONFLICT DO NOTHING;
+
+insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
+                                 created_by, creation_date)
+values (1008, 'SPECIALIST_PROFILE_APPROVED',
+        'Tu perfil ha sido aprobado, ya puedes comenzar a enviar propuestas a los proyectos de las personas.',
+        'Cuando el perfil del especialista es aprobado por el backoffice/administrador de la plataforma',
+        true, 1, ARRAY [''], 'master', now())
+ON CONFLICT DO NOTHING;
+
+insert into jaipro.notification (notification_id, notification_type, content, description, flag_trigger_email, to_profile_type, inputs,
+                                 created_by, creation_date)
+values (1009, 'SPECIALIST_PROFILE_OBSERVED',
+        'Su perfil ha sido observado por favor ponerse en contacto con la plataforma a traves del WhatsApp de Jaipro. La observacion es la siguiente: ${OBSERVATION}.',
+        'Cuando el perfil del especialista es observado por el backoffice/administrador de la plataforma',
+        true, 1, ARRAY ['OBSERVATION'], 'master', now())
+ON CONFLICT DO NOTHING;
