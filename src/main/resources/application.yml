@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: gcp-dev
+    active: gcp-prod
   jpa:
     hibernate:
         ddl-auto: update
