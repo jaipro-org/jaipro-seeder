@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://35.188.213.65:5432/${var.database.name}?schema=${var.database.schema}
-    username: appjaipro
+    username: appjaipro_dev
     password: ${DB_PWD_DEV}
     driver-class-name: org.postgresql.Driver
     hikari:
