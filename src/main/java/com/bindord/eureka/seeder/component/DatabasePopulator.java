@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -38,13 +41,17 @@ public class DatabasePopulator {
 
             File insertFiles = new ClassPathResource("db/inserts").getFile();
             File[] pgFunctions = insertFiles.listFiles();
+            List<String> filePaths = new ArrayList<>(pgFunctions.length);
+            for(File file: pgFunctions) {
+                filePaths.add(file.getAbsoluteFile().getPath());
+            }
+            Collections.sort(filePaths);
             for (int i = 0; i < Objects.requireNonNull(pgFunctions).length; i++) {
                 resourceDatabasePopulator
                         .addScript(
-                                new PathResource(pgFunctions[i].getAbsoluteFile().getPath()));
+                                new PathResource(filePaths.get(i)));
             }
         }
-
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource);
         dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);

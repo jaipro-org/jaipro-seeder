@@ -10,5 +10,5 @@ spring:
 
 var:
   database:
-    name: jaipro
+    name: jaipro_dev
     schema: jaipro
